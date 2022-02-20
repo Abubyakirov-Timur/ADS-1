@@ -5,7 +5,7 @@
 
 bool checkPrime(uint64_t value) {
 // вставьте код функции
-     if (value == 0 || value == 1)
+     if (value == 1 || value == 0)
     {
         return false;
     }
@@ -37,7 +37,7 @@ uint64_t nPrime(uint64_t n) {
 
 uint64_t nextPrime(uint64_t value) {
 // вставьте код функции
-   for (uint64_t i = value + 2;; ++i)
+   for (uint64_t i = value + 1;; ++i)
     {
         if (checkPrime(i))
         {
