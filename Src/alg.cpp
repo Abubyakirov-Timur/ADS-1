@@ -6,7 +6,8 @@
 
 bool checkPrime(uint64_t value) {
 // вставьте код функции
-  bool check = true;
+    bool check = true;
+  
     if ((value % 2 == 1) && (value != 1)) {
         for (int k = 3; k <= sqrt(value); k++) {
             if (value % k == 0) {
@@ -17,6 +18,7 @@ bool checkPrime(uint64_t value) {
     } else if (value != 2) {
         check = false;
     }
+  
     return check;
 }
 
@@ -37,10 +39,12 @@ uint64_t nPrime(uint64_t n) {
 
 uint64_t nextPrime(uint64_t value) {
 // вставьте код функции
-  uint64_t i = value + 1;
+    uint64_t i = value + 1;
+  
     if ((i % 2 == 0) && (i != 2)) {
         i++;
     }
+  
     bool check = false;
     while (!(check)) {
         if (checkPrime(i)) {
@@ -54,11 +58,12 @@ uint64_t nextPrime(uint64_t value) {
 
 uint64_t sumPrime(uint64_t hbound) {
 // вставьте код функции
-  uint64_t sum = 0;
+    uint64_t sum = 0;
     for (int i = 1; i < hbound; i++) {
         if (checkPrime(i)) {
             sum += i;
         }
     }
+  
     return sum;
 }
