@@ -5,65 +5,61 @@
 
 
 bool checkPrime(uint64_t value) {
-    bool check = true;
-  
-    if ((value % 2 == 1) && (value != 1)) {
-        for (int k = 3; k <= sqrt(value); k++) {
-            if (value % k == 0) {
- check = false;
-                break;
-            }
-        }
- } else if (value != 2) {
- check = false;
-    }
-  
-    return check;
+  if (value <= 1)
+    return false;
+  for (int j = 2; j <= (value / 2); j++) {
+    if ((value % j) == 0)
+      return false;
+  }
+  return true;
 }
 
 uint64_t nPrime(uint64_t n) {
-    uint64_t i = 2;
-  
-    if (n != 1) {
- i = 1;
-        while (n != 1) {
- i += 2;
-            if (checkPrime(i)) {
- n--;
-            }
-        }
-    }
-  
-    return i;
+   bool flag1 = true;
+  uint64_t check = 0;
+  uint64_t num = 0;
+  for (int i = 2; flag1 != false; i++) {
+     num = i;
+     bool flag2 = true;
+     for (int i = 2; i <= sqrt(num); i++) {
+       if (num % i == 0) {
+         flag2 = false;
+         break;
+       }
+     }
+     if (flag2) {
+       check++;
+       if (check == n) {
+         flag1 = false;
+       }
+     }
+  }
+  return num;
 }
 
 uint64_t nextPrime(uint64_t value) {
-    uint64_t i = value + 1;
-  
-    if ((i % 2 == 0) && (i != 2)) {
- i++;
-    }
-  
-    bool check = false;
-    while (!(check)) {
-        if (checkPrime(i)) {
- check = true;
-            break;
-        }
- i += 2;
-    }
-  
-    return i;
+  for (uint64_t i = value + 1; i <= value * value; i++)
+    if (checkPrime(i))
+      return i;
 }
 
 uint64_t sumPrime(uint64_t hbound) {
-    uint64_t sum = 0;
-  
-    for (int i = 1; i < hbound; i++) {
-        if (checkPrime(i)) {
- sum += i;
-        }
+  uint64_t div, k, i, digit;
+  digit = 0;
+  uint64_t* prime = new uint64_t[hbound];
+  prime[1] = 0;
+  for (i = 2; i <= hbound; i++)
+    prime[i] = 1;
+  for (div = 2; div * div <= hbound; div++) {
+    if (prime[div] == 1) {
+      for (k = div * div; k <= hbound; k += div) {
+        prime[k] = 0;
+      }
     }
-  
-    return sum;
+  }
+  for (i = 0; i < hbound; i++) {
+    if (prime[i])
+        digit += i;
+  }
+  return digit;
 }
