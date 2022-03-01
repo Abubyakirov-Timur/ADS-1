@@ -41,9 +41,11 @@ uint64_t nPrime(uint64_t n) {
 
 uint64_t nextPrime(uint64_t value) {
 // вставьте код функции
-  for (uint64_t i = value + 1; i <= value * value; i++)
-    if (checkPrime(i))
+  for (uint64_t i = value + 1; i <= value * value; i++) {
+    if (checkPrime(i)) {
       return i;
+    }
+  }
 }
 
 uint64_t sumPrime(uint64_t hbound) {
